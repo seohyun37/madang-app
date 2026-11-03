@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import psycopg
+import psycopg2
 
 st.title("📚 마당책 주문 조회 시스템")
 
