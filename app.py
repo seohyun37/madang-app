@@ -4,12 +4,12 @@ import psycopg2
 
 st.title("📚 마당책 주문 조회 시스템")
 
-# 1. Neon DB 연결 함수 (psycopg 라이브러리 사용)
+# 1. Neon DB 연결 함수
 @st.cache_resource
 def init_connection():
-    return psycopg.connect(
+    return psycopg2.connect(
         host=st.secrets["postgres"]["host"],
-        dbname=st.secrets["postgres"]["database"],
+        database=st.secrets["postgres"]["database"],
         user=st.secrets["postgres"]["user"],
         password=st.secrets["postgres"]["password"],
         port=st.secrets["postgres"]["port"],
@@ -17,7 +17,6 @@ def init_connection():
     )
 
 try:
-    # 연결 테스트
     conn = init_connection()
     st.success("Neon DB 연결 성공!")
 except Exception as e:
@@ -35,7 +34,6 @@ if st.button("주문 내역 조회"):
         """
         
         try:
-            # pandas와 psycopg를 이용해 쿼리 결과를 데이터프레임으로 가져오기
             df = pd.read_sql(query, conn, params=(name,))
             
             if not df.empty:
