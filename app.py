@@ -47,4 +47,4 @@ if st.button("주문 내역 조회"):
         except Exception as e:
             st.error(f"쿼리 실행 중 오류가 발생했습니다: {e}")
     else:
-        st.warning("고객 이름을 입력해주세요.")름을 입력해주세요.")
+        st.warning("고객 이름을 입력해주세요.")
